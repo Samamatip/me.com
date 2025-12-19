@@ -24,3 +24,29 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.scrollbar-none::-webkit-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.secondary {
+  color: #f04e90;
+}
+
+.primary {
+  color: #8633aa;
+}
+
+.primary-dark {
+  color: #5b256f;
+}
+
+.gray {
+  color: #F3F3F3;
+}
