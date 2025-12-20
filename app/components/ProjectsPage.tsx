@@ -9,7 +9,7 @@ const Projects = () => {
 
   return (
     <div>
-      <ProjectsCards items={profile?.projects} noSeeAll={true} />
+      <ProjectsCards items={profile?.projects ?? null} noSeeAll={true} />
     </div>
   )
 }
