@@ -1,7 +1,8 @@
 import {  NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { getRequiredEnv, getOptionalEnv } from '@/app/lib/env';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(getRequiredEnv('RESEND_API_KEY'));
 
 export async function POST(request: NextRequest) {
   try {
@@ -24,18 +25,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // validate contact email is set
-    if (!process.env.CONTACT_EMAIL) {
-      return NextResponse.json(
-        { error: 'Message destination is not set, sending is disabled at the moment, please use the contact email directly.' },
-        { status: 500 }
-      );
-    }
+    // Get required environment variables (will throw if missing)
+    const contactEmail = getRequiredEnv('CONTACT_EMAIL');
+    const fromEmail = getOptionalEnv('RESEND_FROM_EMAIL', 'onboarding@resend.dev');
 
     // Send email using Resend
     const { data, error } = await resend.emails.send({
-      from: `Portfolio Contact <${process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev'}>`, // Use verified domain in production
-      to: [process.env.CONTACT_EMAIL],
+      from: `Portfolio Contact <${fromEmail}>`, // Use verified domain in production
+      to: [contactEmail],
       subject: `New Contact Form Submission from ${name}`,
       replyTo: email,
       html: `

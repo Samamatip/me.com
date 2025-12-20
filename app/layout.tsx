@@ -4,6 +4,17 @@ import "./globals.css";
 import { ProfileProvider } from "./contexts/profileContext";
 import Header from "./components/commons/Header";
 import Footer from "./components/commons/Footer";
+import { validateEnv } from "./lib/env";
+
+// Validate environment variables at build/startup time
+// This will throw an error if required variables are missing
+if (process.env.NODE_ENV !== 'development') {
+  try {
+    validateEnv();
+  } catch (error) {
+    console.error('Environment validation failed:', error);
+  }
+}
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
