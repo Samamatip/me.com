@@ -4,8 +4,22 @@ import SkillsCarrousel from './SkillsCarrousel';
 import Background from './Background';
 import ProjectsOverview from './ProjectsOverview';
 import Contact from './Contact';
+import { useProfile } from '../contexts/profileContext';
 
 const Homepage = () => {
+  const { profile } = useProfile();
+
+  // Show a loading state while profile data is being fetched to ensure all components have the necessary data
+  if (
+    !profile ||
+    !profile.name ||
+    !profile.summary ||
+    !profile.background ||
+    !profile.email
+  ) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <main className=''>
         <div id='skills'><SkillsCarrousel /></div>

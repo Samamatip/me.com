@@ -2,7 +2,12 @@ import { MongoClient } from 'mongodb';
 import { getRequiredEnv } from '@/app/lib/env';
 
 const uri = getRequiredEnv('MONGODB_URI');
-const options = {};
+const options = {
+  tls: true,
+  tlsAllowInvalidCertificates: false,
+  serverSelectionTimeoutMS: 5000,
+  socketTimeoutMS: 45000,
+};
 
 let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
