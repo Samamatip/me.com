@@ -1,4 +1,4 @@
-'use client";'
+'use client'
 import Homepage from "./components/Homepage";
 
 export default function Home() {
