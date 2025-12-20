@@ -28,7 +28,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Samson Olusola | Data Engineer | Software Developer",
-  description: "The personal website of Samson Olusola, a Data Engineer and Software Developer. Explore his projects, blog posts, and get in touch.",
+  description: "The personal website of Samson Olusola, a Data Engineer and Software Developer. Explore projects, blog posts, and get in touch.",
 };
 
 export default function RootLayout({

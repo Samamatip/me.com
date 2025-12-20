@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node scripts/validate-env.js",
     "start": "next start",
     "lint": "eslint",
+    "validate-env": "node scripts/validate-env.js",
     "create-admin": "tsx scripts/create-admin.ts"
   },
   "dependencies": {
